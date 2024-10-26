@@ -65,6 +65,14 @@ def count_cond(condition):
     8
     """
     "*** YOUR CODE HERE ***"
+    def count_function(n):
+        count = 0
+        for j in range(1, n+1):
+            if condition(n, j):
+                count += 1
+        return count
+    return count_function
+
 
 
 def multiple(a, b):
@@ -76,7 +84,13 @@ def multiple(a, b):
     42
     """
     "*** YOUR CODE HERE ***"
-
+    mini_multiple = 1
+    flag = 1
+    for i in range(2, min(a, b)):
+        if a % i == 0 and b % i == 0:
+            flag *= i
+            mini_multiple *= i
+    return  mini_multiple*(a//flag)*(b//flag)
 
 
 def cycle(f1, f2, f3):
@@ -106,4 +120,18 @@ def cycle(f1, f2, f3):
     19
     """
     "*** YOUR CODE HERE ***"
-
+    def operator(n):
+        def loop_use(x):
+            total = x
+            if n == 0:
+                return total
+            for i in range(1, n+1):
+                if i % 3 == 1:
+                    total = f1(total)
+                elif i % 3 == 2:
+                    total = f2(total)
+                elif i % 3 == 0:
+                    total = f3(total)
+            return total
+        return loop_use
+    return operator
